@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude Code GUI</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">📚 문서고</div>
+        <nav class="topnav" id="topNav">
+          <button class="pill active" data-top="work">업무</button>
+          <button class="pill" data-top="decision">의사결정</button>
+          <button class="pill" data-top="agent">에이전트</button>
+          <button class="pill" data-top="report">보고서</button>
+          <button class="pill" data-top="notice">전사 공지</button>
+          <button class="pill" data-top="office">사무실 관리</button>
+        </nav>
+        <div class="live-indicator"><span></span>Live</div>
+      </header>
+
+      <div class="body-grid">
+        <aside class="left-sidebar">
+          <div class="org-box">
+            <div class="org-title">Bkit Office</div>
+          </div>
+          <div class="menu" id="sideNav">
+            <button class="menu-item selected" data-side="office-home">오피스</button>
+            <button class="menu-item" data-side="library">문서고</button>
+            <button class="menu-item" data-side="dashboard">대시보드</button>
+            <button class="menu-item" data-side="task-manage">업무 관리</button>
+            <button class="menu-item" data-side="settings">설정</button>
+          </div>
+          <div class="team-box">
+            <div class="team-title">부서 현황</div>
+            <div class="team-row"><span>기획팀</span><span id="team-planning">0/2</span></div>
+            <div class="team-row"><span>개발팀</span><span id="team-dev">0/3</span></div>
+            <div class="team-row"><span>디자인팀</span><span id="team-design">0/2</span></div>
+            <div class="team-row"><span>운영팀</span><span id="team-ops">0/2</span></div>
+          </div>
+        </aside>
+
+        <main class="content">
+          <section id="libraryHero" class="hero view" data-view="library">
+            <h1>학습 메모리</h1>
+            <div id="libraryTabs" class="hero-tabs">
+              <button class="small-tab active" data-tab="history">Learning History</button>
+              <button class="small-tab" data-tab="skills">Available Skills</button>
+            </div>
+            <div id="libraryFilters" class="filter-row">
+              <button class="chip active" data-filter="all">All</button>
+              <button class="chip" data-filter="claude">Claude Code</button>
+            </div>
+            <div id="libraryHistoryList" class="learning-list">
+              <article class="learning-item" data-provider="claude">
+                <div class="title">vercel-labs/agent-skills#vercel-composition-patterns</div>
+                <div class="meta-row">
+                  <div class="agent-inline">
+                    <span class="agent-avatar a-mage">🧙</span>
+                    <span class="agent-label">Claude Code · Vault</span>
+                  </div>
+                </div>
+                <div class="status">Succeeded</div>
+              </article>
+              <article class="learning-item" data-provider="claude">
+                <div class="title">obra/superpowers#brainstorming</div>
+                <div class="meta-row">
+                  <div class="agent-inline">
+                    <span class="agent-avatar a-fox">🦊</span>
+                    <span class="agent-label">Claude Code · Strategy</span>
+                  </div>
+                </div>
+                <div class="status">Succeeded</div>
+              </article>
+              <article class="learning-item" data-provider="claude">
+                <div class="title">popup-studio-ai/bkit-claude-code</div>
+                <div class="meta-row">
+                  <div class="agent-inline">
+                    <span class="agent-avatar a-robot">🤖</span>
+                    <span class="agent-label">Claude Code · Plugin</span>
+                  </div>
+                </div>
+                <div class="status">Succeeded</div>
+              </article>
+            </div>
+            <div id="libraryDocForm" class="form-row">
+              <input id="docTitle" type="text" placeholder="문서 제목" />
+              <select id="docType">
+                <option value="SPEC">SPEC</option>
+                <option value="DESIGN">DESIGN</option>
+                <option value="REPORT">REPORT</option>
+                <option value="PLAYBOOK">PLAYBOOK</option>
+              </select>
+              <button id="btnAddDoc">문서 추가</button>
+            </div>
+            <div id="docList" class="learning-list"></div>
+          </section>
+
+          <section id="libraryCards" class="cards view" data-view="library">
+            <article class="skill-card" data-skill="find-skills">
+              <div class="rarity rarity-epic">EPIC</div>
+              <h3>find-skills</h3>
+              <p>vercel-labs/skills</p>
+              <div class="avatar-stack">
+                <span class="agent-avatar a-mage">🧙</span>
+                <span class="agent-avatar a-robot">🤖</span>
+                <span class="agent-avatar a-fox">🦊</span>
+              </div>
+              <div class="xp-track"><span style="width: 78%"></span></div>
+              <div class="card-footer"><span>28.7만 설치</span><button class="btn-learn-skill" data-skill="find-skills">학습</button></div>
+            </article>
+            <article class="skill-card" data-skill="vercel-react-best-practices">
+              <div class="rarity rarity-rare">RARE</div>
+              <h3>vercel-react-best-practices</h3>
+              <p>vercel-labs/agent-skills</p>
+              <div class="avatar-stack">
+                <span class="agent-avatar a-knight">🛡️</span>
+                <span class="agent-avatar a-mage">🧙</span>
+                <span class="agent-avatar a-fox">🦊</span>
+              </div>
+              <div class="xp-track"><span style="width: 56%"></span></div>
+              <div class="card-footer"><span>15.5만 설치</span><button class="btn-learn-skill" data-skill="vercel-react-best-practices">학습</button></div>
+            </article>
+            <article class="skill-card" data-skill="web-design-guidelines">
+              <div class="rarity rarity-legend">LEGEND</div>
+              <h3>web-design-guidelines</h3>
+              <p>vercel-labs/agent-skills</p>
+              <div class="avatar-stack">
+                <span class="agent-avatar a-fairy">🧚</span>
+                <span class="agent-avatar a-robot">🤖</span>
+                <span class="agent-avatar a-fox">🦊</span>
+              </div>
+              <div class="xp-track"><span style="width: 89%"></span></div>
+              <div class="card-footer"><span>11.8만 설치</span><button class="btn-learn-skill" data-skill="web-design-guidelines">학습</button></div>
+            </article>
+          </section>
+
+          <section class="hero view active" data-view="office-home">
+            <h1>오피스 홈</h1>
+            <div class="form-row">
+              <button id="btnOfficeGoLibrary">문서고 열기</button>
+              <button id="btnOfficeGoTasks">업무 관리 열기</button>
+              <button id="btnOfficeGoSettings">설정 열기</button>
+            </div>
+            <div id="officeActivityList" class="learning-list"></div>
+          </section>
+
+          <section class="hero view" data-view="dashboard">
+            <h1>대시보드</h1>
+            <div id="pdcaDashboard" class="pdca-dashboard"></div>
+            <div class="grid-2">
+              <div class="learning-item">
+                <div class="title">오늘 처리 업무</div>
+                <div class="kpi" id="kpiTasksDone">0건</div>
+              </div>
+              <div class="learning-item">
+                <div class="title">대기 업무</div>
+                <div class="kpi" id="kpiTasksTodo">0건</div>
+              </div>
+              <div class="learning-item">
+                <div class="title">의사결정 로그</div>
+                <div class="kpi" id="kpiDecisions">0건</div>
+              </div>
+              <div class="learning-item">
+                <div class="title">공지사항</div>
+                <div class="kpi" id="kpiNotices">0건</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="hero view" data-view="decision">
+            <h1>의사결정</h1>
+            <div class="form-row">
+              <input id="decisionTitle" type="text" placeholder="결정 제목" />
+              <input id="decisionOwner" type="text" placeholder="담당자" />
+              <button id="btnAddDecision">추가</button>
+            </div>
+            <div id="decisionList" class="learning-list"></div>
+          </section>
+
+          <section class="hero view" data-view="agent">
+            <h1>에이전트 운영</h1>
+            <div id="agentGrid" class="grid-2"></div>
+          </section>
+
+          <section class="hero view" data-view="task-manage">
+            <h1>업무 관리</h1>
+            <div class="form-row">
+              <input id="taskTitle" type="text" placeholder="업무명" />
+              <select id="taskPriority">
+                <option value="P1">P1</option>
+                <option value="P2">P2</option>
+                <option value="P3">P3</option>
+              </select>
+              <button id="btnAddTask">업무 추가</button>
+            </div>
+            <div id="taskList" class="learning-list"></div>
+          </section>
+
+          <section class="hero view" data-view="report">
+            <h1>보고서</h1>
+            <div class="form-row">
+              <button id="btnGenerateReport">요약 생성</button>
+              <button id="btnAiReport">AI 보고서</button>
+              <button id="btnCopyReport">복사</button>
+            </div>
+            <textarea id="reportText" class="block-text" placeholder="여기에 보고서가 생성됩니다."></textarea>
+          </section>
+
+          <section class="hero view" data-view="notice">
+            <h1>전사 공지</h1>
+            <div class="form-row">
+              <input id="noticeTitle" type="text" placeholder="공지 제목" />
+              <input id="noticeBody" type="text" placeholder="공지 내용" />
+              <button id="btnAddNotice">공지 등록</button>
+            </div>
+            <div id="noticeList" class="learning-list"></div>
+          </section>
+
+          <section class="hero view" data-view="office">
+            <h1>사무실 관리</h1>
+            <div class="grid-2">
+              <div class="learning-item">
+                <div class="title">기획팀</div>
+                <div class="form-row">
+                  <input id="planningCurrent" type="number" min="0" placeholder="현재" />
+                  <input id="planningTotal" type="number" min="1" placeholder="정원" />
+                </div>
+              </div>
+              <div class="learning-item">
+                <div class="title">개발팀</div>
+                <div class="form-row">
+                  <input id="devCurrent" type="number" min="0" placeholder="현재" />
+                  <input id="devTotal" type="number" min="1" placeholder="정원" />
+                </div>
+              </div>
+              <div class="learning-item">
+                <div class="title">디자인팀</div>
+                <div class="form-row">
+                  <input id="designCurrent" type="number" min="0" placeholder="현재" />
+                  <input id="designTotal" type="number" min="1" placeholder="정원" />
+                </div>
+              </div>
+              <div class="learning-item">
+                <div class="title">운영팀</div>
+                <div class="form-row">
+                  <input id="opsCurrent" type="number" min="0" placeholder="현재" />
+                  <input id="opsTotal" type="number" min="1" placeholder="정원" />
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <button id="btnSaveOffice">사무실 상태 저장</button>
+            </div>
+          </section>
+
+          <section class="hero view" data-view="settings">
+            <h1>설정</h1>
+            <div class="form-row">
+              <select id="appTheme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="system">System</option>
+              </select>
+              <button id="btnApplyTheme">테마 적용</button>
+            </div>
+            <p class="agent-label">앱 테마를 설정합니다.</p>
+            <div class="form-row">
+              <select id="appDensity">
+                <option value="cozy">Cozy</option>
+                <option value="compact">Compact</option>
+              </select>
+              <button id="btnApplySettings">설정 적용</button>
+            </div>
+            <p class="agent-label">UI 밀도 설정을 적용합니다.</p>
+          </section>
+        </main>
+
+      <div id="docPreviewModal" class="modal" style="display:none">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 id="docPreviewTitle">문서 미리보기</h2>
+            <button id="btnClosePreview">닫기</button>
+          </div>
+          <pre id="docPreviewBody" class="doc-preview-body"></pre>
+        </div>
+      </div>
+
+        <aside class="right-rail">
+          <div class="status-box">
+            <div class="status-item">
+              <span class="label">Claude CLI</span>
+              <span id="claudeStatus" class="value">확인 중...</span>
+            </div>
+            <div class="status-item">
+              <span class="label">작업 폴더</span>
+              <span id="cwdInfo" class="value mono">-</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="btnStartClaude">Claude 시작</button>
+            <button id="btnLogin">Claude 로그인</button>
+            <button id="btnOpenBkitMarketplace">마켓 추가</button>
+            <button id="btnInstallBkit">bkit 설치</button>
+            <button id="btnRestartShell">셸 재시작</button>
+          </div>
+
+          <div class="chat-box">
+            <p>Chat Console</p>
+            <div class="model-row">
+              <label for="modelSelect">Model</label>
+              <select id="modelSelect">
+                <option value="sonnet">sonnet</option>
+                <option value="opus">opus</option>
+                <option value="haiku">haiku</option>
+              </select>
+              <button id="btnApplyModel">적용</button>
+            </div>
+            <div class="session-row">
+              <button id="btnSaveSession">저장</button>
+              <button id="btnLoadSession">불러오기</button>
+            </div>
+            <div id="chatLog" class="chat-log"></div>
+            <div id="history" class="history"></div>
+            <textarea id="promptInput" placeholder="Enter 전송, Shift+Enter 줄바꿈"></textarea>
+            <button id="btnSendPrompt" class="accent">프롬프트 전송</button>
+          </div>
+
+          <div class="terminal-wrap">
+            <div class="terminal-header">Integrated Terminal</div>
+            <div id="terminal"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <nav class="mobile-bottom-nav" id="mobileNav">
+      <button data-top="office">오피스</button>
+      <button data-top="work">업무</button>
+      <button data-top="decision">결정</button>
+      <button data-top="agent">에이전트</button>
+      <button data-top="report">보고서</button>
+      <button data-top="notice">공지</button>
+    </nav>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

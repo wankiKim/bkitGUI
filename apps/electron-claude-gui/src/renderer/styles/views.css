@@ -1,0 +1,27 @@
+/* Settings view */
+/* (Settings styles are minimal - using shared component classes) */
+
+/* Mobile responsive overrides for views */
+@media (max-width: 800px) {
+  .hero h1 {
+    font-size: 22px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row input,
+  .form-row select {
+    min-width: 0;
+    width: 100%;
+  }
+}

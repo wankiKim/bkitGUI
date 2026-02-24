@@ -1,0 +1,231 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%, #f8f3ea 0%, transparent 30%),
+    radial-gradient(circle at 85% 100%, #e9ddc8 0%, transparent 30%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 15% 0%, #1e2a45 0%, transparent 30%),
+    radial-gradient(circle at 85% 100%, #0f1729 0%, transparent 30%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+}
+
+.app-shell {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 72px 1fr;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 220px 1fr 100px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--line);
+  background:
+    linear-gradient(180deg, #f7f1e4 0%, #efe4d1 100%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.65);
+}
+
+:root[data-theme="dark"] .topbar {
+  background: linear-gradient(180deg, #1e2a45 0%, #16213e 100%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.brand {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #3d2d19;
+  text-shadow: 0 1px 0 #fff4df;
+}
+
+:root[data-theme="dark"] .brand {
+  color: #e0d0b8;
+  text-shadow: none;
+}
+
+.topnav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.live-indicator {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #5d5346;
+  font-weight: 700;
+}
+
+.live-indicator span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #20b25f;
+  box-shadow: 0 0 0 6px rgba(32, 178, 95, 0.15);
+}
+
+.body-grid {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 250px minmax(740px, 1fr) 420px;
+}
+
+.left-sidebar,
+.right-rail {
+  background: linear-gradient(180deg, #ede2ce, #e8dac0);
+}
+
+:root[data-theme="dark"] .left-sidebar,
+:root[data-theme="dark"] .right-rail {
+  background: linear-gradient(180deg, #16213e, #0f1729);
+}
+
+.left-sidebar {
+  border-right: 2px solid var(--line);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.content {
+  overflow: auto;
+  padding: 14px;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+.cards.view.active {
+  display: grid;
+}
+
+.right-rail {
+  border-left: 2px solid var(--line);
+  padding: 12px;
+  overflow: auto;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Mobile bottom nav */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #f7f1e4, #efe4d1);
+  border-top: 2px solid var(--line);
+  padding: 6px 8px;
+  z-index: 100;
+  gap: 4px;
+  justify-content: space-around;
+}
+
+:root[data-theme="dark"] .mobile-bottom-nav {
+  background: linear-gradient(180deg, #1e2a45, #16213e);
+}
+
+.mobile-bottom-nav button {
+  font-size: 11px;
+  padding: 6px 8px;
+  flex: 1;
+  max-width: 80px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1580px) {
+  .body-grid {
+    grid-template-columns: 220px minmax(520px, 1fr) 380px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .left-sidebar {
+    border-right: 0;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 8px;
+  }
+
+  .left-sidebar .org-box,
+  .left-sidebar .team-box {
+    display: none;
+  }
+
+  .left-sidebar .menu {
+    display: flex;
+    gap: 6px;
+  }
+
+  .right-rail {
+    border-left: 0;
+    border-top: 2px solid var(--line);
+  }
+}
+
+@media (max-width: 800px) {
+  .topbar {
+    grid-template-columns: auto 1fr;
+    padding: 8px 12px;
+  }
+
+  .topnav {
+    display: none;
+  }
+
+  .body-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .left-sidebar {
+    display: none;
+  }
+
+  .right-rail {
+    border: 0;
+  }
+
+  .app-shell {
+    grid-template-rows: 56px 1fr;
+    padding-bottom: 56px;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+  }
+}
+
+body.density-compact {
+  font-size: 13px;
+}
