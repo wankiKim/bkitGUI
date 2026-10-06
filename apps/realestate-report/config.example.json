@@ -1,0 +1,43 @@
+{
+  "regions": {
+    "서울시": ["강남구", "송파구"],
+    "경기도": ["성남시 분당구"]
+  },
+
+  "naver": {
+    "enabled": true,
+    "trade_types": ["A1", "B1"],
+    "real_estate_types": ["A01", "A04"],
+    "max_pages_per_dong": 40,
+    "request_interval_sec": 0.8,
+    "headless": true,
+    "browser_channel": "chrome"
+  },
+
+  "courtauction": {
+    "enabled": true,
+    "usage": "apartment",
+    "window_days": 30,
+    "max_failed_bids": "",
+    "page_size": 50,
+    "max_pages": 60,
+    "request_interval_sec": 2.5
+  },
+
+  "hogangnono": {
+    "enabled": false,
+    "apartments": [],
+    "request_interval_sec": 3.0,
+    "headless": true,
+    "browser_channel": "chrome"
+  },
+
+  "report": {
+    "output_dir": "reports",
+    "upcoming_auction_days": 14,
+    "price_change_min_pct": 0.0,
+    "open_in_browser": false
+  },
+
+  "data_dir": "data"
+}
